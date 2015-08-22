@@ -160,6 +160,7 @@
 
                 $.getJSON('https://www.googleapis.com/customsearch/v1?key=AIzaSyAknEW7Q3-UZb6Y7MhYQKy72Om2QoEQbTY&cx=009669790981487415505:dlul1p76mt8&q=' + query).then(function (data) {
                         html = data.items[0].title;
+                        alert(data.items[0].title);
                 });
                 alert("html" + html);
                 return html;
