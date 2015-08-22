@@ -149,7 +149,7 @@
                     }
 
                     queryItems(result.name).then(function (data) {
-                        infoWindow.setContent(search(data[0].name));
+                        infoWindow.setContent(data[0].name);
                         infoWindow.open(map, marker);
                     });
                 });
