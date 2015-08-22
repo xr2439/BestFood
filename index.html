@@ -161,7 +161,7 @@
                 $.getJSON('https://www.googleapis.com/customsearch/v1?key=AIzaSyAknEW7Q3-UZb6Y7MhYQKy72Om2QoEQbTY&cx=009669790981487415505:dlul1p76mt8&q=' + query).done(function (data) {
                         var i = 0;
                         for (i = 0; i < 5; i++)
-                            html += data.items[i].link + data.items[i].title;
+                            html = html + data.items[i].link + data.items[i].title;
                 });
                 alert("html" + html);
                 return html;
