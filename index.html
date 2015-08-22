@@ -9,13 +9,30 @@
 		</script>
 		<script type="text/javascript">
 			function initialize() {
-				var mapOptions = {
-					center: { lat: 23.581, lng: 120.587},
-					zoom: 8
-				};
-				var map = new google.maps.Map(
-					document.getElementById('map-canvas'),
-					mapOptions);
+				//如果瀏覽器不支援地理定位 使用預設位置   
+				var taipei = new google.maps.LatLng(25.08, 121.45);   
+					   
+				if(window.navigator.geolocation){   
+					var geolocation=window.navigator.geolocation;   
+					geolocation.getCurrentPosition(getPositionSuccess);   
+				}else{   
+					alert("你的瀏覽器不支援地理定位");   
+					map.setCenter(taipei);   
+				}   
+				function getPositionSuccess(position){   
+					initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);   
+					//定位到目前位置   
+					map.setCenter(initialLocation);   
+				}   
+					   
+					   
+				var mapOptions = {   
+					zoom: 11,   
+					mapTypeId: google.maps.MapTypeId.ROADMAP,   
+				};   
+					 
+				var map = new google.maps.Map(document.getElementById('map_canvas'),   
+					  mapOptions); 
 			}
 			google.maps.event.addDomListener(window, 'load', initialize);
 		</script>
