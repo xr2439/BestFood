@@ -148,7 +148,7 @@
                         return;
                     }
 
-                    queryItems(query).then(function (data) {
+                    queryItems(result.name).then(function (data) {
                         infoWindow.setContent(search(data[0].name));
                         infoWindow.open(map, marker);
                     });
