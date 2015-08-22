@@ -147,8 +147,11 @@
                         console.error(status);
                         return;
                     }
-                    infoWindow.setContent(search(result.name));
-                    infoWindow.open(map, marker);
+
+                    queryItems(query).then(function (data) {
+                        infoWindow.setContent(search(data[0].name));
+                        infoWindow.open(map, marker);
+                    });
                 });
                 //infoWindow.setContent(search(place.name));
                 //infoWindow.open(map, this);
@@ -158,14 +161,6 @@
                 return $.getJSON('https://www.googleapis.com/customsearch/v1?key=AIzaSyAknEW7Q3-UZb6Y7MhYQKy72Om2QoEQbTY&cx=009669790981487415505:dlul1p76mt8&q=' + query).then(function (data) {
                         return data.items;
                 });
-            }
-            function search(query) {
-                var result = '';
-                queryItems(query).then(function (data) {
-                    result = data[0].title;
-                });
-                alert(result);
-                return result;
             }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?libraries=places&signed_in=true&callback=initMap" async defer>
