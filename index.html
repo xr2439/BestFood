@@ -149,7 +149,9 @@
                     }
 
                     queryItems(result.name).then(function (data) {
+                        alert("hihih");
                         infoWindow.setContent(data[0].name);
+                        alert("hi");
                         infoWindow.open(map, marker);
                     });
                 });
