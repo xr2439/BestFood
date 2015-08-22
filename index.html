@@ -30,12 +30,14 @@
             // locate you.
             var map;
             var infoWindow;
+            var service;
             function initMap() {
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: 22.992412, lng:120.218156},
                     zoom: 18,
                     mapTypeControl: true
                 });
+                service = new google.maps.places.PlacesService(map);
                 infoWindow = new google.maps.InfoWindow({map: map});
                 // Create the search box and link it to the UI element.
                 var input = document.getElementById('pac-input');
@@ -105,7 +107,6 @@
                         infoWindow.setPosition(pos);
                         infoWindow.setContent('Location found.');
                         map.setCenter(pos);
-                        var service = new google.maps.places.PlacesService(map);
                         service.radarSearch({
                             location: map.getCenter(),
                             radius: 3000,
@@ -141,8 +142,16 @@
                 position: place.geometry.location
               });
               google.maps.event.addListener(marker, 'click', function() {
-                infoWindow.setContent(search(place.name));
-                infoWindow.open(map, this);
+                service.getDetails(place, function(result, status) {
+                    if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                        console.error(status);
+                        return;
+                    }
+                    infoWindow.setContent(search(result.name));
+                    infoWindow.open(map, marker);
+                });
+                //infoWindow.setContent(search(place.name));
+                //infoWindow.open(map, this);
               });
             }
             function search(query) {
