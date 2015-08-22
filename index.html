@@ -150,11 +150,10 @@
 
                     $.getJSON('https://www.googleapis.com/customsearch/v1?key=AIzaSyAknEW7Q3-UZb6Y7MhYQKy72Om2QoEQbTY&cx=009669790981487415505:dlul1p76mt8&q=' + result.name).done(function (data) {
                         var i = 0;
-                        $.each(data.items, function() {
-                            alert(data.items[i].title + '\n\n' + data.items[i].snippet);
-                            i++;
-                        });
-                        infoWindow.setContent(data.items[0].title);
+                        var html = '';
+                        for (i = 0; i < 5; i = i + 1)
+                            html = html + '<a href="' + data.items[i].link + '">' + data.items[i].title + '</a></br >';
+                        infoWindow.setContent(html);
                         infoWindow.open(map, marker);
                     });
                 });
