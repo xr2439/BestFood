@@ -148,21 +148,19 @@
                         return;
                     }
 
-                    queryItems(result.name).then(function (data) {
-                        alert("hihih");
-                        infoWindow.setContent(data[0].name);
-                        alert("hi");
+                    $.getJSON('https://www.googleapis.com/customsearch/v1?key=AIzaSyAknEW7Q3-UZb6Y7MhYQKy72Om2QoEQbTY&cx=009669790981487415505:dlul1p76mt8&q=' + result.name).done(function (data) {
+                        var i = 0;
+                        $.each(data.items, function() {
+                            alert(data.items[i].title + '\n\n' + data.items[i].snippet);
+                            i++;
+                        });
+                        infoWindow.setContent(data.items[0].title);
                         infoWindow.open(map, marker);
                     });
                 });
                 //infoWindow.setContent(search(place.name));
                 //infoWindow.open(map, this);
               });
-            }
-            function queryItems(query) {
-                return $.getJSON('https://www.googleapis.com/customsearch/v1?key=AIzaSyAknEW7Q3-UZb6Y7MhYQKy72Om2QoEQbTY&cx=009669790981487415505:dlul1p76mt8&q=' + query).then(function (data) {
-                        return data.items;
-                });
             }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?libraries=places&signed_in=true&callback=initMap" async defer>
