@@ -160,9 +160,12 @@
                 });
             }
             function search(query) {
-                return queryItems(query).then(function (data) {
-                    return data[0].title;
+                var result = '';
+                queryItems(query).then(function (data) {
+                    result = data[0].title;
                 });
+                alert(result);
+                return result;
             }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?libraries=places&signed_in=true&callback=initMap" async defer>
