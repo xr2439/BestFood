@@ -152,7 +152,7 @@
                         var i = 0;
                         var html = '';
                         for (i = 0; i < 5; i = i + 1)
-                            html = html + '<a href="' + data.items[i].link + '">' + data.items[i].title + '</a></br >';
+                            html = html + '<a target="_blank" href="' + data.items[i].link + '">' + data.items[i].title + '</a></br >';
                         infoWindow.setContent(html);
                         infoWindow.open(map, marker);
                     });
