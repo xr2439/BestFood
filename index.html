@@ -105,10 +105,10 @@
                         };
 
                         infoWindow.setPosition(pos);
-                        infoWindow.setContent('Location found.');
                         var beachMarker = new google.maps.Marker({
                           position: pos,
                           map: map,
+                          title: 'My Location',
                           icon: './images/Google Maps Markers/blue_MarkerA.png'
                         });
                         map.setCenter(pos);
